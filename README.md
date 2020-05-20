@@ -11,6 +11,32 @@ The very fist step has been to simplify the problem so the existing infrastructu
 
 Simplifying the infrastructure will allow us to focus on the process
 
+## Setup 
+
+Make sure to download and install terraform binary first (https://www.terraform.io/downloads.html) and then run 
+
+`terraform init`
+
+in the root of the project.
+
+
+
+## Importing Resources
+
+
+TODO
+
+## Remote Terraform State
+
+TODO
+
+## Worklow
+
+TODO
+
+
+
+
 
 
 
