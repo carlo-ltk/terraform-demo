@@ -5,10 +5,8 @@ provider "aws" {
 }
 
 # Sample S3 Bucket
-resource {
-    "aws_s3_bucket" "sample_bucket" {
+resource "aws_s3_bucket" "sample_bucket" {
         bucket = "ydr-sample-bucket"
-    }
 }
 
 # Existing Resource ID: ydr-sample-web-app
