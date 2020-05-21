@@ -4,6 +4,11 @@ provider "aws" {
   region  = "us-east-1"
 }
 
+# Sample S3 Bucket
+resource "aws_s3_bucket" "sample_bucket" {
+        bucket = "ydr-sample-bucket"
+}
+
 # Existing Resource ID: ydr-sample-web-app
 resource "aws_s3_bucket" "web_app" {
     bucket = "ydr-sample-web-app"
