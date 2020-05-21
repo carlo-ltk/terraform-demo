@@ -46,7 +46,7 @@ Where `E3187LMRS3KU82` is the known ID of the resource (in this case a CloudFron
 
 While the default for the *state* is to be stored locally it can be kept in a remote location allowing teamwork on the same project. 
 
-(Remote state)[https://www.[]terraform.io/docs/state/remote.html] is a [backend](https://www.terraform.io/docs/backends/index.html) feature and we are using an [s3](https://www.terraform.io/docs/backends/types/s3.html) backend type here. 
+[Remote state](https://www.[]terraform.io/docs/state/remote.html) is a [backend](https://www.terraform.io/docs/backends/index.html) feature and we are using an [s3](https://www.terraform.io/docs/backends/types/s3.html) backend type here. 
 
 *S3 Backend* also supports state locking and consistency checking via Dynamo DB that need to be configured yet.
 
