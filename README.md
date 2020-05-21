@@ -23,8 +23,26 @@ in the root of the project.
 
 ## Importing Resources
 
+Terraform allow to import existing resources (https://www.terraform.io/docs/import/index.html). 
+Importing a resource works this way: 
 
-TODO
+* In the config file define the resource with and empty configuration
+
+```
+resource "aws_cloudfront_distribution" "cf" {
+
+}
+```
+
+* On the command line run 
+
+`terraform import aws_cloudfront_distribution.cf E3187LMRS3KU82`
+
+Where `E3187LMRS3KU82` is the known ID of the resource (in this case a CloudFront Distribution. This operation will load the exising resource into the [state](https://www.terraform.io/docs/state/) and link the resource defined in the config file with the exising one so that the setup can be checked against the resource state.
+
+* Fine tune the resource configuration until a `terraform plan` run will not detect any difference between the exising resource and its configuration. 
+
+
 
 ## Remote Terraform State
 
