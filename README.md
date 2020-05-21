@@ -38,7 +38,7 @@ resource "aws_cloudfront_distribution" "cf" {
 
 `terraform import aws_cloudfront_distribution.cf E3187LMRS3KU82`
 
-Where `E3187LMRS3KU82` is the known ID of the resource (in this case a CloudFront Distribution. This operation will load the exising resource into the [state](https://www.terraform.io/docs/state/) and link the resource defined in the config file with the exising one so that the setup can be checked against the resource state.
+Where `E3187LMRS3KU82` is the known ID of the resource, in this case a CloudFront Distribution. This operation will load the exising resource into the [state](https://www.terraform.io/docs/state/) and link the resource defined in the config file with the exising one so that the setup can be checked against the resource state.
 
 * Fine tune the resource configuration until a `terraform plan` run will not detect any difference between the exising resource and its configuration. 
 
@@ -50,7 +50,7 @@ While the default for the [state](https://www.terraform.io/docs/state/index.html
 
 *S3 Backend* also supports state *locking and consistency checking* via Dynamo DB that need to be configured yet.
 
-## Worklow
+## Workflow
 
 One of the greatest benefits of *Infrastructure As Code* is that Infrastructure changes deployments can be autometed. 
 
