@@ -24,7 +24,7 @@ in the root of the project.
 ## Importing Resources
 
 Terraform allows to import existing resources (https://www.terraform.io/docs/import/index.html). 
-Importing a resource works this way: 
+Resources from our sample infrastructure are already imported here but in general importing a resource works this way: 
 
 * In the config file define the resource with and empty configuration
 
