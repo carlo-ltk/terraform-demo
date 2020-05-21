@@ -23,7 +23,7 @@ in the root of the project.
 
 ## Importing Resources
 
-Terraform allow to import existing resources (https://www.terraform.io/docs/import/index.html). 
+Terraform allows to import existing resources (https://www.terraform.io/docs/import/index.html). 
 Importing a resource works this way: 
 
 * In the config file define the resource with and empty configuration
@@ -42,11 +42,13 @@ Where `E3187LMRS3KU82` is the known ID of the resource (in this case a CloudFron
 
 * Fine tune the resource configuration until a `terraform plan` run will not detect any difference between the exising resource and its configuration. 
 
-
-
 ## Remote Terraform State
 
-TODO
+While the default for the *state* is to be stored locally it can be kept in a remote location allowing teamwork on the same project. 
+
+(Remote state)[https://www.[]terraform.io/docs/state/remote.html] is a (backend)[https://www.terraform.io/docs/backends/index.html] feature and we are using an (s3)[https://www.terraform.io/docs/backends/types/s3.html] backend type here. 
+
+*S3 Backend* also supports state locking and consistency checking via Dynamo DB that need to be configured yet.
 
 ## Worklow
 
