@@ -19,8 +19,6 @@ Make sure to download and install terraform binary first (https://www.terraform.
 
 in the root of the project.
 
-
-
 ## Importing Resources
 
 Terraform allows to import existing resources (https://www.terraform.io/docs/import/index.html). 
@@ -62,7 +60,28 @@ Hashicorp provides a nice [GitHub Actions workflow](https://www.terraform.io/doc
 
 ## Environments
 
-TODO
+
+Directly from the [Workspaces section](https://www.terraform.io/docs/state/workspaces.html) of Terraform documentation:
+
+>Each Terraform configuration has an associated backend that defines how operations are executed and where persistent data such as the Terraform state are stored.
+
+>The persistent data stored in the backend belongs to a workspace. Initially the backend has only one workspace, called "default", and thus there is only one Terraform state associated with that configuration.
+
+>Certain backends support multiple named workspaces, allowing multiple states to be associated with a single configuration. The configuration still has only one backend, but multiple distinct instances of that configuration to be deployed without configuring a new backend or changing authentication credentials.
+
+**Workspaces** are ideals to manage different states of the same infrastructure, so they are suitable to:
+
+* Deploy and mantain replicas of the same infrastructure 
+* Test infrastructure changes before going live
+
+Since we are exploring migrating existing infrastructure to Terraform I envision two distict scenarios: 
+
+* You infrastructure has already deployed replicas (environments) of the same configuration 
+* You want to create new environments from a single instance of your configuration
+
+In the first case you start with one replica, build the configuration as described above, then create a new workspace for every existing environment while tuning the configuration to match each environment and also import all the exising resources on the corresponding workspace.
+
+In the second case, that is the simplest, you start with building the configuration for your single instance, then make the needed changes to it to allow multiples states, create the the new workspaces and create then resulting resources from there.
 
 ## Shared Resources
 
