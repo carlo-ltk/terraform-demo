@@ -52,7 +52,13 @@ While the default for the [state](https://www.terraform.io/docs/state/index.html
 
 ## Worklow
 
-TODO
+One of the greatest benefits of *Infrastructure As Code* is that Infrastructure changes deployments can be autometed. 
+
+Hashicorp provides a nice [GitHub Actions workflow](https://www.terraform.io/docs/github-actions/setup-terraform.html#github-actions-workflow-yaml) that has been setup already for this demo. 
+
+* On a GitHub pull_request event, the workflow will checkout the GitHub repository, download Terraform CLI, configure the Terraform CLI configuration file with a Terraform Cloud user API token, and execute terraform init, terraform fmt -check and terraform plan.
+
+* On a GitHub push event to the master branch, the workflow will perform the same actions as on a pull_request and will additionally execute terraform apply -auto-approve.
 
 ## Environments
 
