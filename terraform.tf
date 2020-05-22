@@ -1,6 +1,8 @@
+/* 
 resource "aws_s3_bucket" "terraform_state" {
     bucket = "yd-sample-terraform-state"
 }
+*/
 
 terraform {
     backend "s3" {
