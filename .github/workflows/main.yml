@@ -34,7 +34,7 @@ jobs:
 
       - name: Terraform Workspace
         if: endsWith(github.ref, 'staging') || endsWith(github.base_ref,'staging')
-        run: terraform workspace new staging
+        run: terraform workspace select staging
 
       - name: Terraform Plan
         run: terraform plan
