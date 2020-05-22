@@ -46,6 +46,16 @@ While the default for the [state](https://www.terraform.io/docs/state/index.html
 
 [Remote state](https://www.[]terraform.io/docs/state/remote.html) is a [backend](https://www.terraform.io/docs/backends/index.html) feature and we are using an [s3](https://www.terraform.io/docs/backends/types/s3.html) backend type here. 
 
+**Please note, the s3 Backend expects the bucket where you want to store the state to exists beforehand**
+
+If during development of the terraform config, you have to switch from an initial local backend to the S3 one and want to manage the creationg of the s3 bucket using the same config you can do the following: 
+
+* Create the `aws_s3_bucket.terraform_state` resource in the config, apply the plan and get the bucket created
+* You can now add the configuration for the s3 backend that will use the exising bucket
+
+At this point the s3 bucket you defined as resource is loaded in the **state** and if you create a new **workspace** terraform will try to add it back. To avoid this you will better remove it from the state using the `terraform state rm` command or create the bucket from the `aws console` at the beginning.
+
+
 *S3 Backend* also supports state *locking and consistency checking* via Dynamo DB that need to be configured yet.
 
 ## Workflow
