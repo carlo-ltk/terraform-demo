@@ -22,7 +22,7 @@ resource "aws_s3_bucket_policy" "web_app" {
                     "Effect": "Allow",
                     "Principal": "*",
                     "Action": "s3:GetObject",
-                    "Resource": "arn:aws:s3:::ydr-sample-web-app/*"
+                    "Resource": lookup(local.web_app_bucket_resource, terraform.workspace)
                 }
             ]
         }
@@ -38,6 +38,11 @@ locals {
         staging = "S3-ydr-stg-sample-web-app"
         default = "S3-ydr-sample-web-app"
     }
+    web_app_bucket_resource = {
+        staging = "arn:aws:s3:::ydr-stg-sample-web-app/*"
+        default = "arn:aws:s3:::ydr-sample-web-app/*"
+    }
+
 }
 
 # Existing Resource id: E3187LMRS3KU82
