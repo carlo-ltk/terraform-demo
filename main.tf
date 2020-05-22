@@ -6,8 +6,8 @@ provider "aws" {
 
 # Existing Resource ID: ydr-sample-web-app
 resource "aws_s3_bucket" "web_app" {
-    bucket = "ydr-sample-web-app"
-    acl = "private"
+    bucket = lookup(local.web_app_bucket, terraform.workspace)
+    acl = "private"    
 }
 
 resource "aws_s3_bucket_policy" "web_app" {
@@ -30,7 +30,14 @@ resource "aws_s3_bucket_policy" "web_app" {
 }
 
 locals {
-  web_app_s3_origin_id = "S3-ydr-sample-web-app"
+    web_app_bucket = {
+        staging = "ydr-stg-sample-web-app"
+        default = "ydr-sample-web-app"
+    }
+    web_app_s3_origin_id =  {
+        staging = "S3-ydr-stg-sample-web-app"
+        default = "S3-ydr-sample-web-app"
+    }
 }
 
 # Existing Resource id: E3187LMRS3KU82
@@ -39,7 +46,7 @@ resource "aws_cloudfront_distribution" "cf" {
     is_ipv6_enabled = true
     origin {
         domain_name = aws_s3_bucket.web_app.bucket_regional_domain_name
-        origin_id = local.web_app_s3_origin_id
+        origin_id = lookup(local.web_app_s3_origin_id, terraform.workspace)
     }
     restrictions {
         geo_restriction {
@@ -52,7 +59,7 @@ resource "aws_cloudfront_distribution" "cf" {
     default_cache_behavior {
         allowed_methods             = ["GET", "HEAD"]
         cached_methods              = ["GET", "HEAD"]
-        target_origin_id            = local.web_app_s3_origin_id
+        target_origin_id            = lookup(local.web_app_s3_origin_id, terraform.workspace)
         default_ttl                 = 86400
         max_ttl                     = 31536000
         viewer_protocol_policy      = "redirect-to-https"
