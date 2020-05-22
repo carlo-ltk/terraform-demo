@@ -33,7 +33,7 @@ jobs:
       #  run: terraform fmt -check
 
       - name: Terraform Workspace
-        if: github.ref == 'refs/heads/staging' || github.base_ref == 'refs/heads/staging'
+        if: endWith(github.ref, 'staging') || endWith(github.base_ref,'staging')
         run: terraform workspace new staging
 
       - name: Terraform Plan
